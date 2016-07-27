@@ -10,5 +10,6 @@ struct Node{
 
 int max(int, int);
 int get_balance(struct Node*);
+int height(struct Node*);
 struct Node* create_node(int);
 struct Node *insert(struct Node*, int);

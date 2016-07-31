@@ -13,3 +13,4 @@ int get_balance(struct Node*);
 int height(struct Node*);
 struct Node* create_node(int);
 struct Node *insert(struct Node*, int);
+void pre_order_traversal(struct Node*);

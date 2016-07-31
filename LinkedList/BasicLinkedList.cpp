@@ -44,10 +44,6 @@ void PrintList(struct Node *root)
 }
 
 /*
-Inserts node at start of list
-*/
-
-/*
 Inserts node at particular position
 */
 void InsertNode(int data, int position, struct Node **root)

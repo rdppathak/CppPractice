@@ -27,14 +27,15 @@ void max_heapify(struct MaxHeap* maxHeap, int idx)
     int left = (idx << 1) + 1;
     int right = (idx + 1) << 1;
 
-    if (left < maxHeap->size && maxHeap->arr[left] > maxHeap->arr[largest])
+    if (left < maxHeap->size && maxHeap->arr[left] < maxHeap->arr[largest])
         largest = left;
 
-    if (right < maxHeap->size && maxHeap->arr[right] > maxHeap->arr[largest])
+    if (right < maxHeap->size && maxHeap->arr[right] < maxHeap->arr[largest])
         largest = right;
 
     if (largest != idx)
     {
+        printf("Swapping elements [%d] & [%d]\n", maxHeap->arr[largest], maxHeap->arr[idx]);
         swap(&maxHeap->arr[largest], &maxHeap->arr[idx]);
         max_heapify(maxHeap, largest);
     }
@@ -55,13 +56,16 @@ struct MaxHeap* createAndBuildHeap(int *arr, int size)
 void heap_sort(int *arr, int size)
 {
     struct MaxHeap* maxHeap = createAndBuildHeap(arr, size);
-
+    printf("Element positions after heap build\n");
+    print_array(arr, size);
     while (maxHeap->size > 1)
     {
         swap(&maxHeap->arr[0], &maxHeap->arr[maxHeap->size - 1]);
         --maxHeap->size;
 
         max_heapify(maxHeap, 0);
+        printf("Element position after iteration: [%d]\n", maxHeap->size);
+        print_array(maxHeap->arr, size);
     }
 }
 int main()

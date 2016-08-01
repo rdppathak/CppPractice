@@ -5,6 +5,8 @@
 #define ALPHABET_SIZE (26)
 
 struct TrieNode{
-    struct TrieNode alphabets[ALPHABET_SIZE];
+    struct TrieNode *alphabets[ALPHABET_SIZE];
     bool leaf_node;
 };
+
+struct TrieNode* create_node();

@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-lstdc++
-CCFLAGS=-std=c++11
+CCFLAGS=-std=c++11 -fpermissive
 
 default: Tries.exe
 

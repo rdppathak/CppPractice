@@ -1,6 +1,6 @@
 CC=g++
 CFLAGS=-lstdc++
-CCFLAGS=-std=c++11 -fpermissive
+CCFLAGS=-std=c++11
 
 default: BIT.exe
 

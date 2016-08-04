@@ -4,11 +4,11 @@ CCFLAGS=-std=c++11
 
 default: RedBlack.exe
 
-RedBlack.exe: RedBlackOperations.o main.o
-	$(CC) $(CFLAGS) -o RedBlack.exe RedBlackOperations.o main.o
+RedBlack.exe: RedBlackTreeOperations.o main.o
+	$(CC) $(CFLAGS) -o RedBlack.exe RedBlackTreeOperations.o main.o
 
-RedBlackOperations.o:
-	 $(CC) $(CCFLAGS) -c RedBlackOperations.cpp
+RedBlackTreeOperations.o:
+	 $(CC) $(CCFLAGS) -c RedBlackTreeOperations.cpp
 
 main.o:
 	$(CC) $(CCFLAGS) -c main.cpp

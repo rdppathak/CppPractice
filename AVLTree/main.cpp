@@ -9,5 +9,11 @@ int main(){
     printf("Pre Order traversal of tree is as follows:\n");
     pre_order_traversal(root);
     printf("\n");
+
+    root = delete_node(root, 20);
+
+    printf("Pre Order traversal of tree is as follows:\n");
+    pre_order_traversal(root);
+    printf("\n");
     return 0;
 }

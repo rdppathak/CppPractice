@@ -101,3 +101,80 @@ struct Node *insert(struct Node *n, int data){
     }
     return n;
 }
+
+struct Node* get_minimum_value_node(struct Node* root){
+    struct Node* current = root;
+    while(current->left!=NULL){
+        current = current->left;
+    }
+
+    return current;
+}
+
+struct Node* delete_node(struct Node* root, int key){
+    if (root == NULL){
+        return root;
+    }
+
+    if(root->data < key){
+        //Element belongs in right subtree
+        root->right = delete_node(root->right, key);
+    }else if(root->data > key){
+        //Element belongs in left subtree
+        root->left = delete_node(root->left, key);
+    }else{
+        //Element found
+        struct Node* temp = NULL;
+        if (root->left == NULL || root->right == NULL){
+            if(root->left == NULL){
+                temp = root->right;
+            }else{
+                temp = root->left;
+            }
+
+            if (temp == NULL){
+                temp = root;
+                root = NULL;
+            }else{
+                *root = *temp;
+            }
+            free(temp);
+        }else{
+            struct Node* temp;
+            temp = get_minimum_value_node(root->right);
+
+            root->data = temp->data;
+
+            root->right = delete_node(root->right, temp->data);
+        }
+
+    }
+    if(root == NULL){
+        return root;
+    }
+
+    //Update the height 
+
+    root->height = max(height(root->left), height(root->right))+1;
+
+    int balance = get_balance(root);
+
+    if (balance>1 && get_balance(root->left)>=0){
+        right_rotate(root);
+    }
+
+    if (balance>1 && get_balance(root->left)<0){
+        root->left = left_rotate(root->left);
+        right_rotate(root);
+    }
+
+    if (balance<-1 && get_balance(root->right)<=0){
+        left_rotate(root);
+    }
+
+    if (balance<-1 && get_balance(root->right)>0){
+        root->right = right_rotate(root->right);
+        left_rotate(root);
+    }
+    return root;
+}

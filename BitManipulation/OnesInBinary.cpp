@@ -3,10 +3,15 @@
 int main(){
 	int lines;
 	scanf("%d", &lines);
-	int input;
 	for(int i=0;i<lines;i++){
+		int input;
+		int count=0;
 		scanf("%d", &input);
-		printf("%d\n", input-1);
+		while(input >0){
+			count++;
+			input = (input)&(input-1);
+		}
+		printf("%d\n", count);
 	}
 	return 0;
 }

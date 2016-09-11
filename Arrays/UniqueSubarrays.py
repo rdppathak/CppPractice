@@ -1,32 +1,22 @@
-import copy
+def get_connection():
+	return "Connection"
 
-def get_unique_array(array):
-	unique_array = []
-	weight_sum = 0
+def decorator(func):
+	conn = get_connection()
+	def func_wrapper(*args, **kwargs):
+		print "Args[%s] Kwargs[%s]"%(args, kwargs)
+		return func(conn, *args, **kwargs)
 
-	for i in xrange(len(array)):
-		curr_arr = ''
-		j=i
-		while(j<len(array)):
-			item = array[j]
-			if item+'|' not in curr_arr:
-				curr_arr += 
-			else:
-				break
-			if curr_arr not in unique_array:
-				unique_array.append(copy.deepcopy(curr_arr))
-				weight_sum += len(curr_arr.replace('|'))
-			j+=1
-	return weight_sum
-
+	return func_wrapper
+@decorator
+def connection(conn, db=None, details=None):
+	print conn
+	print "Inside Connection function"
+	print "Db[%s], details[%s]"%(db, details)
 
 def main():
-	lines = int(raw_input())
-	for l in xrange(lines):
-		array_size = int(raw_input())
-		array = raw_input()
-		array = [int(j) for j in array.split(" ")]
-		print get_unique_array(array)
+	print "Inside Main Function"
+	connection("master")
 
 if __name__ == '__main__':
 	main()
